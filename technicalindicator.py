@@ -1,3 +1,4 @@
+#This is to create a data frame of SMA by varying windows, and update it based on the new coming date
 import pandas as pd
 import numpy as np
 JPY = pd.read_csv('JPY.csv')
@@ -10,9 +11,9 @@ technicalJPY = pd.DataFrame(index = JPY['Date'][:50])
 
 for day in listofdays:
     technicalJPY.loc[day:,'sma'+str(day)+'d']= list(sma(JPY, index, day) for index in xrange(day, 50))
-    print technicalJPY[40:]
-#update function
+    #print technicalJPY[40:]
+#update function -- suppose currentdate is 20100312
 current = "2010-03-12"
 technicalJPY.loc[current] =[sma(JPY, 51, day) for day in listofdays]
-print technicalJPY[40:]
+#print technicalJPY[40:]
     #print technicalJPY[40:]
